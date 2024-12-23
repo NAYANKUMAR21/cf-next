@@ -1,6 +1,5 @@
 'use client';
 import { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import Navbar from '@/components/Navbar';
 
@@ -11,7 +10,6 @@ type Todo = {
 };
 
 export default function Home() {
-  const router = useRouter();
   const [todos, setTodos] = useState<Todo[]>([]); // State to store fetched todos
   const [newTodo, setNewTodo] = useState<string>(''); // State for the input field
 
@@ -32,7 +30,7 @@ export default function Home() {
     fetchTodos();
   }, []);
 
-  const addTodo = (event: any) => {
+  const addTodo = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (!newTodo.trim()) return;
 
@@ -48,9 +46,6 @@ export default function Home() {
     setTodos((prevTodos) => prevTodos.filter((todo) => todo.id !== id));
   };
 
-  const routeDifPage = (id: number) => {
-    router.push(`/${id}`);
-  };
   return (
     <>
       <Navbar />

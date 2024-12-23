@@ -1,5 +1,6 @@
 'use client';
-import { useRouter, useSearchParams } from 'next/navigation';
+
+import { useSearchParams } from 'next/navigation';
 import { useState, useEffect } from 'react';
 
 type Todo = {
@@ -23,13 +24,17 @@ export default function Page() {
         const response = await fetch(
           'https://jsonplaceholder.typicode.com/todos/1'
         );
-        if (!response.ok) {
-          throw new Error(`Error: ${response.status}`);
-        }
+
         const data = await response.json();
+
         setTodo(data);
-      } catch (err: any) {
-        setError(err.message);
+      } catch (err: unknown) {
+        if (err instanceof Error) {
+          console.log('error', err.message);
+          setError(err.message);
+        } else {
+          setError('An unknown error occurred');
+        }
       } finally {
         setLoading(false);
       }
