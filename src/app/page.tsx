@@ -37,8 +37,8 @@ export default function Home() {
 
     // Add new todo locally
     setTodos((prevTodos) => [
-      ...prevTodos,
       { id: Date.now(), title: newTodo, completed: false },
+      ...prevTodos,
     ]);
     setNewTodo('');
   };
