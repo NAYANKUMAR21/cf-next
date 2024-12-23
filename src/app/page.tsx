@@ -8,6 +8,7 @@ type Todo = {
   title: string;
   completed: boolean;
 };
+export const runtime = 'edge';
 
 export default function Home() {
   const [todos, setTodos] = useState<Todo[]>([]); // State to store fetched todos

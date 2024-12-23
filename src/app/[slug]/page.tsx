@@ -8,6 +8,7 @@ type Todo = {
   title: string;
   completed: boolean;
 };
+export const runtime = 'edge';
 
 export default function Page() {
   const [todo, setTodo] = useState<Todo | null>(null); // State to store the todo
